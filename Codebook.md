@@ -1,15 +1,15 @@
 # Getting and Cleaning Data Project Codebook 
 
-This Codebook details the data used in the project for the _Getting and Cleaning Data_ course.
+This Codebook details the data used in the project for the **_Getting and Cleaning Data_** Coursera course.
 Topics covered here include:
 * Description of the raw source data
 * Data transformations performed 
 * Description of the tidy dataset produced 
 
----
-title: "Codebook"
-output: html_document
----
+## Raw Source Data
+
+
+
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 

@@ -12,8 +12,8 @@
 10 
  
 11 # produced vignettes 
-12 vignettes/*.html 
-13 vignettes/*.pdf 
+12 *.html 
+13 *.pdf 
 14 
  
 15 # OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3 
