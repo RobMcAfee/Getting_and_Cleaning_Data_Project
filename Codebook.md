@@ -21,7 +21,7 @@ The archive will then be unzipped into a subdirectory named **/data**.  The subd
 it does note exist.  The unzipped files will be placed into a subdirectory named **/data/UCI HAR Dataset**.
 The complete listing of unzipped files is:
 
----
+```
  [1] "activity_labels.txt"                         
  [2] "features.txt"                                
  [3] "features_info.txt"                           
@@ -50,7 +50,26 @@ The complete listing of unzipped files is:
 [26] "train/subject_train.txt"                     
 [27] "train/X_train.txt"                           
 [28] "train/y_train.txt"    
----
+```
+Of these files, the only ones that are of interest for this project are:
+
+```
+        "README.txt"              ->  Description of UCI HAR Dataset files
+        
+        "test/X_test.txt"         ->  Feature values.  These are measures summarizing the 
+        "train/X_train.txt"           subject data and include mean, std, cor, and other 
+                                      descriptive measures detailed in features_info.txt
+ 
+        "features.txt"            ->  Feature variable names
+        "features_info.txt"       ->  Description of Features
+        
+        "test/subject_test.txt"   ->  Subject Identifiers
+        "train/subject_train.txt"
+        
+        "test/y_test.txt"         ->  Activity Identifiers
+        "train/y_train.txt"
+        "activity_labels.txt"     ->  Labels for Activity Identifiers
+```
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
