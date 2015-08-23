@@ -70,6 +70,29 @@ Of these files, the only ones that are of interest for this project are:
         "train/y_train.txt"
         "activity_labels.txt"     ->  Labels for Activity Identifiers
 ```
+## Data Transformations
+
+### Process the features data
+There are 561 feature measures.  The values for all of these measures are standardized and range from -1 to +1.  A complete listing of the features names is in "features_info.txt"
+
+The steps followed by the script to process the features data are:
+1. X_test and X_train datasets are read in and appended by the rbind() function to create the
+   data.features data frame.
+2. The names from features.txt are read in and then added as the column names for the features.
+
+```
+1. X_test and X_train datasets are read in and appended by the rbind() function to create the
+   data.features data frame.
+2. The names from features.txt are read in and then added as the column names for the features.
+
+For a complete list of the columns, refer to the 
+
+```
+### Create the data.
+```
+1. subject_test.tx and subject_train.txt are appended by the rbind() function to create
+   the data frame of subject identities
+2. The name "Subject" is added to the single column of subject identities
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
