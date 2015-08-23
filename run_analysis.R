@@ -32,11 +32,10 @@ UCI_HAR_dataPath <- file.path(dataPath, "UCI HAR Dataset")
 
 ##############################################################################################
 ##  Requirement 1: Merge the training and the test sets to create one data set.
-##  Requirement 3: Uses descriptive activity names to name the activities in the data set
 ##  Requirement 4: Appropriately labels the data set with descriptive variable names.
 ##
-##  I found it easier to do these requirements together during the processing the features,
-##  subject identifier, and activity data
+##  I found it easier to do part of requirement 4 during the processing for the features,
+##  subject identifier, and activity data.
 ##############################################################################################
 
 ### Process feature data ###
@@ -54,7 +53,7 @@ data.features <- rbind(X_test, X_train)
 rm(X_test)
 rm(X_train)
 
-  # add the column names 
+  # add the column names (this is for requirement 4)
 feature_names <- read.table(file.path(UCI_HAR_dataPath, "features.txt"), header = FALSE)
 names(data.features) <- feature_names[,2]
 
@@ -94,7 +93,28 @@ rm(Y_train)
   # name the column "ActivityCode"
 names(data.activity) <- c("ActivityCode")
 
-### Add the activity labels (for requirement 3) ###
+### Combine all the data ###
+UCI_HAR_data <- cbind(data.subject, data.activity, data.features)
+
+##############################################################################################
+##  Requirement 2: Extract only the measurements on the mean and standard deviation for 
+##                 each measurement.
+##
+##  I interpreted this to mean that only the columns that ended with mean() or std()
+##  should be kept.
+##############################################################################################
+
+  # Subset the data to only keep the feature columns with mean() or std() as part of the name
+FeatureNamesToKeep <- feature_names$V2[grep("mean\\(\\)|std\\(\\)", feature_names$V2)]
+UCI_HAR_data <- subset(UCI_HAR_data, select = c("Subject", "ActivityCode", 
+                                                as.character(FeatureNamesToKeep)))
+
+
+##############################################################################################
+##  Requirement 3: Uses descriptive activity names to name the activities in the data set
+##                
+##############################################################################################
+
   # Read in the Activity labels file
 ActivityLabels <- read.table(file.path(UCI_HAR_dataPath, "activity_labels.txt"), header = FALSE)
 
@@ -102,15 +122,40 @@ ActivityLabels <- read.table(file.path(UCI_HAR_dataPath, "activity_labels.txt"),
 names(ActivityLabels) <- c("ActivityCode", "Activity")
 
   # merge the Activity Labels 
-data.activity <- merge(data.activity, ActivityLabels, by="ActivityCode", all.x = T)
+UCI_HAR_data <- merge(UCI_HAR_data, ActivityLabels, by="ActivityCode", all.x = T)
 
-### Combine all the data ###
-UCI_HAR_data <- cbind(data.subject, data.activity, data.features)
+  # reorder the columns to put columns in order of: Subject, ActivityCode, Activty, then all features
+UCI_HAR_data <- UCI_HAR_data[,c(2,1,69,3:68)]
+
+##############################################################################################
+##  Requirement 4: Appropriately label the data set with descriptive variable names
+##   
+##  This part isn't strictly required for #4, but from reading the forums I understand that 
+##  it's one interpretation.  I liked the idea of making the column names more readable,
+##  so I added these extra transformations.
+##############################################################################################
+
+names(UCI_HAR_data)<-gsub("^t", "time", names(UCI_HAR_data)) 
+names(UCI_HAR_data)<-gsub("^f", "frequency", names(UCI_HAR_data)) 
+names(UCI_HAR_data)<-gsub("Acc", "Accelerometer", names(UCI_HAR_data)) 
+names(UCI_HAR_data)<-gsub("Gyro", "Gyroscope", names(UCI_HAR_data)) 
+names(UCI_HAR_data)<-gsub("Mag", "Magnitude", names(UCI_HAR_data)) 
+names(UCI_HAR_data)<-gsub("BodyBody", "Body", names(UCI_HAR_data)) 
 
 
+##############################################################################################
+##  Requirement 5: create an independent tidy data set with the average of each variable 
+##                 for each activity and each subject
+##
+##  For 30 subject each doing 6 activities, there will be an 180 (30x6) aggregate observations
+##  generated.
+##############################################################################################
 
-### Subset the data to only keep the feature columns with mean() or std() as part of the name
-FeatureNamesToKeep <- feature_names$V2[grep("mean\\(\\)|std\\(\\)", feature_names$V2)]
-UCI_HAR_data <- subset(UCI_HAR_data, select = c("Subject", "ActivityCode", "Activity", 
-                                                as.character(FeatureNamesToKeep)))
+library(plyr) 
+  # Create the aggreate data
+tidydata <- aggregate(. ~Subject + Activity, UCI_HAR_data, mean)
+  # Order the data by subject and activity
+tidydata <- tidydata[order(tidydata$Subject, tidydata$ActivityCode), ] 
+  # create the tidy data file
+write.table(tidydata, file = "./tidydata.txt", row.names=FALSE, quote = FALSE) 
 

@@ -108,24 +108,107 @@ The steps followed by the script to process the activity identity data are:
 
 1. Y_test.tx and Y_train.txt are appended to create the activity code column.
 2. The name "ActivityCode" is added to the single column of activity codes.
-3. The activity_labels.txt is read in and merged by ActivityCode to match the activity values  with the appropriate activity code.
+3. Eventually the activity_labels.txt is read in and merged by ActivityCode to match the activity value with the appropriate activity code.
 
 ### Combine and then subset the data
-The subject, activity, and features data are combined and then subset to keep only the feature data that are for mean or standard deviations.  This is indicated by a "mean()" or "std()" at the end of the feature column name.  The mean and std feature columns, along with the Subject, ActivityCode, and Activity columns, create a final combined data set of 10299 observations and 69 columns.
+The subject, activity, and features data are combined and then subset to keep only the feature data that are for mean or standard deviations.  This is indicated by a "mean()" or "std()" at the end of the feature column name.  The mean and std feature columns, along with the Subject, ActivityCode, and Activity columns, create a combined data set of 10299 observations and 69 columns.
 
+### Add descriptive names
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+After expanding the naming scheme used by the source data to have more descriptive names, The complete list of columns is:
+```
+ [1] "ActivityCode"                                   "Subject"                                       
+ [3] "timeBodyAccelerometer-mean()-X"                 "timeBodyAccelerometer-mean()-Y"                
+ [5] "timeBodyAccelerometer-mean()-Z"                 "timeBodyAccelerometer-std()-X"                 
+ [7] "timeBodyAccelerometer-std()-Y"                  "timeBodyAccelerometer-std()-Z"                 
+ [9] "timeGravityAccelerometer-mean()-X"              "timeGravityAccelerometer-mean()-Y"             
+[11] "timeGravityAccelerometer-mean()-Z"              "timeGravityAccelerometer-std()-X"              
+[13] "timeGravityAccelerometer-std()-Y"               "timeGravityAccelerometer-std()-Z"              
+[15] "timeBodyAccelerometerJerk-mean()-X"             "timeBodyAccelerometerJerk-mean()-Y"            
+[17] "timeBodyAccelerometerJerk-mean()-Z"             "timeBodyAccelerometerJerk-std()-X"             
+[19] "timeBodyAccelerometerJerk-std()-Y"              "timeBodyAccelerometerJerk-std()-Z"             
+[21] "timeBodyGyroscope-mean()-X"                     "timeBodyGyroscope-mean()-Y"                    
+[23] "timeBodyGyroscope-mean()-Z"                     "timeBodyGyroscope-std()-X"                     
+[25] "timeBodyGyroscope-std()-Y"                      "timeBodyGyroscope-std()-Z"                     
+[27] "timeBodyGyroscopeJerk-mean()-X"                 "timeBodyGyroscopeJerk-mean()-Y"                
+[29] "timeBodyGyroscopeJerk-mean()-Z"                 "timeBodyGyroscopeJerk-std()-X"                 
+[31] "timeBodyGyroscopeJerk-std()-Y"                  "timeBodyGyroscopeJerk-std()-Z"                 
+[33] "timeBodyAccelerometerMagnitude-mean()"          "timeBodyAccelerometerMagnitude-std()"          
+[35] "timeGravityAccelerometerMagnitude-mean()"       "timeGravityAccelerometerMagnitude-std()"       
+[37] "timeBodyAccelerometerJerkMagnitude-mean()"      "timeBodyAccelerometerJerkMagnitude-std()"      
+[39] "timeBodyGyroscopeMagnitude-mean()"              "timeBodyGyroscopeMagnitude-std()"              
+[41] "timeBodyGyroscopeJerkMagnitude-mean()"          "timeBodyGyroscopeJerkMagnitude-std()"          
+[43] "frequencyBodyAccelerometer-mean()-X"            "frequencyBodyAccelerometer-mean()-Y"           
+[45] "frequencyBodyAccelerometer-mean()-Z"            "frequencyBodyAccelerometer-std()-X"            
+[47] "frequencyBodyAccelerometer-std()-Y"             "frequencyBodyAccelerometer-std()-Z"            
+[49] "frequencyBodyAccelerometerJerk-mean()-X"        "frequencyBodyAccelerometerJerk-mean()-Y"       
+[51] "frequencyBodyAccelerometerJerk-mean()-Z"        "frequencyBodyAccelerometerJerk-std()-X"        
+[53] "frequencyBodyAccelerometerJerk-std()-Y"         "frequencyBodyAccelerometerJerk-std()-Z"        
+[55] "frequencyBodyGyroscope-mean()-X"                "frequencyBodyGyroscope-mean()-Y"               
+[57] "frequencyBodyGyroscope-mean()-Z"                "frequencyBodyGyroscope-std()-X"                
+[59] "frequencyBodyGyroscope-std()-Y"                 "frequencyBodyGyroscope-std()-Z"                
+[61] "frequencyBodyAccelerometerMagnitude-mean()"     "frequencyBodyAccelerometerMagnitude-std()"     
+[63] "frequencyBodyAccelerometerJerkMagnitude-mean()" "frequencyBodyAccelerometerJerkMagnitude-std()" 
+[65] "frequencyBodyGyroscopeMagnitude-mean()"         "frequencyBodyGyroscopeMagnitude-std()"         
+[67] "frequencyBodyGyroscopeJerkMagnitude-mean()"     "frequencyBodyGyroscopeJerkMagnitude-std()"     
+[69] "Activity" 
+```
+Refer to the README.txt and features_info.txt files in the source data for more information about the features.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+## Description of the tidy data set
 
-```{r}
-summary(cars)
+The tidy data set is named **_tidydata.txt_** and consists of:
+
+* 180 observations ordered by Subject and Activity with each observation containing the mean values for 66 features.
+* The Subject column has integer values from 1 to 30 and represent which of the 30 study participants the observation is about
+* The Activity and Activity Code columns indicate the activity.  The values are indicated in this table:
+```
+    Acvity | Activity 
+     Code  |
+    -------|----------
+       1   | WALKING
+       2   | WALKING_UPSTAIRS
+       3   | WALKING_DOWNSTAIRS
+       4   | SITTING
+       5   | STANDING
+       6   | LAYING
+    -------|----------   
+```
+* The mean feature values range from -1 to 1 and are unitless.  The complete list of the 66 feature columns are:
+```
+[1] "timeBodyAccelerometer-mean()-X"                 "timeBodyAccelerometer-mean()-Y"                
+ [3] "timeBodyAccelerometer-mean()-Z"                 "timeBodyAccelerometer-std()-X"                 
+ [5] "timeBodyAccelerometer-std()-Y"                  "timeBodyAccelerometer-std()-Z"                 
+ [7] "timeGravityAccelerometer-mean()-X"              "timeGravityAccelerometer-mean()-Y"             
+ [9] "timeGravityAccelerometer-mean()-Z"              "timeGravityAccelerometer-std()-X"              
+[11] "timeGravityAccelerometer-std()-Y"               "timeGravityAccelerometer-std()-Z"              
+[13] "timeBodyAccelerometerJerk-mean()-X"             "timeBodyAccelerometerJerk-mean()-Y"            
+[15] "timeBodyAccelerometerJerk-mean()-Z"             "timeBodyAccelerometerJerk-std()-X"             
+[17] "timeBodyAccelerometerJerk-std()-Y"              "timeBodyAccelerometerJerk-std()-Z"             
+[19] "timeBodyGyroscope-mean()-X"                     "timeBodyGyroscope-mean()-Y"                    
+[21] "timeBodyGyroscope-mean()-Z"                     "timeBodyGyroscope-std()-X"                     
+[23] "timeBodyGyroscope-std()-Y"                      "timeBodyGyroscope-std()-Z"                     
+[25] "timeBodyGyroscopeJerk-mean()-X"                 "timeBodyGyroscopeJerk-mean()-Y"                
+[27] "timeBodyGyroscopeJerk-mean()-Z"                 "timeBodyGyroscopeJerk-std()-X"                 
+[29] "timeBodyGyroscopeJerk-std()-Y"                  "timeBodyGyroscopeJerk-std()-Z"                 
+[31] "timeBodyAccelerometerMagnitude-mean()"          "timeBodyAccelerometerMagnitude-std()"          
+[33] "timeGravityAccelerometerMagnitude-mean()"       "timeGravityAccelerometerMagnitude-std()"       
+[35] "timeBodyAccelerometerJerkMagnitude-mean()"      "timeBodyAccelerometerJerkMagnitude-std()"      
+[37] "timeBodyGyroscopeMagnitude-mean()"              "timeBodyGyroscopeMagnitude-std()"              
+[39] "timeBodyGyroscopeJerkMagnitude-mean()"          "timeBodyGyroscopeJerkMagnitude-std()"          
+[41] "frequencyBodyAccelerometer-mean()-X"            "frequencyBodyAccelerometer-mean()-Y"           
+[43] "frequencyBodyAccelerometer-mean()-Z"            "frequencyBodyAccelerometer-std()-X"            
+[45] "frequencyBodyAccelerometer-std()-Y"             "frequencyBodyAccelerometer-std()-Z"            
+[47] "frequencyBodyAccelerometerJerk-mean()-X"        "frequencyBodyAccelerometerJerk-mean()-Y"       
+[49] "frequencyBodyAccelerometerJerk-mean()-Z"        "frequencyBodyAccelerometerJerk-std()-X"        
+[51] "frequencyBodyAccelerometerJerk-std()-Y"         "frequencyBodyAccelerometerJerk-std()-Z"        
+[53] "frequencyBodyGyroscope-mean()-X"                "frequencyBodyGyroscope-mean()-Y"               
+[55] "frequencyBodyGyroscope-mean()-Z"                "frequencyBodyGyroscope-std()-X"                
+[57] "frequencyBodyGyroscope-std()-Y"                 "frequencyBodyGyroscope-std()-Z"                
+[59] "frequencyBodyAccelerometerMagnitude-mean()"     "frequencyBodyAccelerometerMagnitude-std()"     
+[61] "frequencyBodyAccelerometerJerkMagnitude-mean()" "frequencyBodyAccelerometerJerkMagnitude-std()" 
+[63] "frequencyBodyGyroscopeMagnitude-mean()"         "frequencyBodyGyroscopeMagnitude-std()"         
+[65] "frequencyBodyGyroscopeJerkMagnitude-mean()"     "frequencyBodyGyroscopeJerkMagnitude-std()"     
 ```
 
-You can also embed plots, for example:
 
-```{r, echo=FALSE}
-plot(cars)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
