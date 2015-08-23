@@ -210,5 +210,5 @@ The tidy data set is named **_tidydata.txt_** and consists of:
 [63] "frequencyBodyGyroscopeMagnitude-mean()"         "frequencyBodyGyroscopeMagnitude-std()"         
 [65] "frequencyBodyGyroscopeJerkMagnitude-mean()"     "frequencyBodyGyroscopeJerkMagnitude-std()"     
 ```
-
+Refer to the README.txt and features_info.txt files in the source data for more information about the features.
 
