@@ -66,14 +66,14 @@ Of these files, the only ones that are of interest for this project are:
         "test/subject_test.txt"   ->  Subject Identifiers
         "train/subject_train.txt"
         
-        "test/y_test.txt"         ->  Activity Identifiers
-        "train/y_train.txt"
+        "test/Y_test.txt"         ->  Activity Identifiers
+        "train/Y_train.txt"
         "activity_labels.txt"     ->  Labels for Activity Identifiers
 ```
 ## Data Transformations
 
 ### Process the features data
-There are 561 feature measures.  The values for all of these measures are standardized and range from -1 to +1.  A complete listing of the features names is in "features_info.txt"
+There are 561 columns of feature measures.  The values for all of these measures are standardized and range from -1 to +1.  A complete listing of the features names is in "features_info.txt".  The features will make up most of the columns in the combined data.
 
 The steps followed by the script to process the features data are:
 
@@ -81,19 +81,35 @@ The steps followed by the script to process the features data are:
    data.features data frame.
 2. The names from features.txt are read in and then added as the column names for the features.
 
-```
-1. X_test and X_train datasets are read in and appended by the rbind() function to create the
-   data.features data frame.
-2. The names from features.txt are read in and then added as the column names for the features.
+### Process the subject identity data
+There are 30 subjects in the study and each is identified with an integer value from 1 to 30.  Each row of the combined data should include a subject value to indicate which of the 30 partipants the observation is for.
 
-For a complete list of the columns, refer to the 
+The steps followed by the script to process the subject identity data are:
 
-```
-### Create the data.
-```
-1. subject_test.tx and subject_train.txt are appended by the rbind() function to create
-   the data frame of subject identities
-2. The name "Subject" is added to the single column of subject identities
+1. subject_test.tx and subject_train.txt are appended by the rbind() function to create the
+   data.activity data frame.
+2. The name "ActivityCode" is added to the single column of subject identities
+
+### Process the activty data
+There are 6 activities in the study.  They are:
+Acvity | Activity 
+ Code  |
+-------|----------
+   1   | WALKING
+   2   | WALKING_UPSTAIRS
+   3   | WALKING_DOWNSTAIRS
+   4   | SITTING
+   5   | STANDING
+   6   | LAYING
+-------|----------   
+
+Each row of fhe combined data should include an activity code and activity value to indicate which of the activities the observation is for.
+
+The steps followed by the script to process the activity identity data are:
+
+1. Y_test.tx and Y_train.txt are appended by the rbind() function to create the
+   data.activty data frame.
+2. The name "Activity Code" is added to the single column of subject identities
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
