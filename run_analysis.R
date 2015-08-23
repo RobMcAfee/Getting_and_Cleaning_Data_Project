@@ -1,5 +1,8 @@
 # run_analysis.R
 # 
+# Rob McAfee
+# Aug 2015
+# Project for Getting and Cleaning Data
 
 # set the current directory to the project directory.  
 setwd("~/Rob/Coursera/Getting_and_Cleaning_Data/project")
