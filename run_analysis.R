@@ -114,12 +114,3 @@ FeatureNamesToKeep <- feature_names$V2[grep("mean\\(\\)|std\\(\\)", feature_name
 UCI_HAR_data <- subset(UCI_HAR_data, select = c("Subject", "ActivityCode", "Activity", 
                                                 as.character(FeatureNamesToKeep)))
 
-
-# Read in the Activity labels file
-ActivityLabels <- read.table(file.path(UCI_HAR_dataPath, "activity_labels.txt"), header = FALSE)
-
-# name the columns "ActivityCode" and "Activity"
-names(ActivityLabels) <- c("ActivityCode", "Activity")
-
-# merge the Activity Labels 
-data.activity <- merge(data.activity, ActivityLabels, by="ActivityCode", all.x = T)

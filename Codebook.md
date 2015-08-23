@@ -77,8 +77,7 @@ There are 561 columns of feature measures.  The values for all of these measures
 
 The steps followed by the script to process the features data are:
 
-1. X_test and X_train datasets are read in and appended by the rbind() function to create the
-   data.features data frame.
+1. X_test and X_train datasets are read in and appended to create the features columns of data.
 2. The names from features.txt are read in and then added as the column names for the features.
 
 ### Process the subject identity data
@@ -86,31 +85,34 @@ There are 30 subjects in the study and each is identified with an integer value 
 
 The steps followed by the script to process the subject identity data are:
 
-1. subject_test.tx and subject_train.txt are appended by the rbind() function to create the
-   data.activity data frame.
+1. subject_test.tx and subject_train.txt are appended to create the column of subject identities.
 2. The name "ActivityCode" is added to the single column of subject identities
 
 ### Process the activty data
 There are 6 activities in the study.  They are:
-
-Acvity | Activity 
- Code  |
--------|----------
-   1   | WALKING
-   2   | WALKING_UPSTAIRS
-   3   | WALKING_DOWNSTAIRS
-   4   | SITTING
-   5   | STANDING
-   6   | LAYING
--------|----------   
-
-Each row of fhe combined data should include an activity code and activity value to indicate which of the activities the observation is for.
+```
+    Acvity | Activity 
+     Code  |
+    -------|----------
+       1   | WALKING
+       2   | WALKING_UPSTAIRS
+       3   | WALKING_DOWNSTAIRS
+       4   | SITTING
+       5   | STANDING
+       6   | LAYING
+    -------|----------   
+```
+Each row of the combined data should include an activity code and activity value to indicate which of the activities the observation is for.
 
 The steps followed by the script to process the activity identity data are:
 
-1. Y_test.tx and Y_train.txt are appended by the rbind() function to create the
-   data.activty data frame.
-2. The name "Activity Code" is added to the single column of subject identities
+1. Y_test.tx and Y_train.txt are appended to create the activity code column.
+2. The name "ActivityCode" is added to the single column of activity codes.
+3. The activity_labels.txt is read in and merged by ActivityCode to match the activity values  with the appropriate activity code.
+
+### Combine and then subset the data
+The subject, activity, and features data are combined and then subset to keep only the feature data that are for mean or standard deviations.  This is indicated by a "mean()" or "std()" at the end of the feature column name.  The mean and std feature columns, along with the Subject, ActivityCode, and Activity columns, create a final combined data set of 10299 observations and 69 columns.
+
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
