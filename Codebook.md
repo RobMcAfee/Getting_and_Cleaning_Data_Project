@@ -76,6 +76,7 @@ Of these files, the only ones that are of interest for this project are:
 There are 561 feature measures.  The values for all of these measures are standardized and range from -1 to +1.  A complete listing of the features names is in "features_info.txt"
 
 The steps followed by the script to process the features data are:
+
 1. X_test and X_train datasets are read in and appended by the rbind() function to create the
    data.features data frame.
 2. The names from features.txt are read in and then added as the column names for the features.
