@@ -1,3 +1,11 @@
+# Getting and Cleaning Data Project Codebook 
+
+This Codebook details the data used in the project for the _Getting and Cleaning Data_ course.
+Topics covered here include:
+* Description of the raw source data
+* Data transformations performed 
+* Description of the tidy dataset produced 
+
 ---
 title: "Codebook"
 output: html_document
