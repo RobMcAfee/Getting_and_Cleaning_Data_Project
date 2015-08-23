@@ -92,6 +92,7 @@ The steps followed by the script to process the subject identity data are:
 
 ### Process the activty data
 There are 6 activities in the study.  They are:
+
 Acvity | Activity 
  Code  |
 -------|----------
