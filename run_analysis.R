@@ -4,7 +4,13 @@
 # Aug 2015
 # Project for Getting and Cleaning Data
 
-# set the current directory to the project directory.  
+##############################################################################################
+##  Initial Setup: Download data files to if necessary.            
+##############################################################################################
+
+# set the current working directory to the project directory.  
+# change as neeeded to match your project directory
+# or remove the line to use the current working directory.
 setwd("~/Rob/Coursera/Getting_and_Cleaning_Data/project")
 
 # set the data subdirectory path

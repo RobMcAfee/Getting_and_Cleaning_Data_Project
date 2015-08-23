@@ -7,9 +7,35 @@ Topics covered here include:
 * Description of the tidy dataset produced 
 
 ## Raw Source Data
+### Background information
+The source data is from a study that collected measure from the accelerometers of participants that were performing a variety of activities while wearing the Samsung Galaxy S smartphone. A full description of the study is available at the site where the data was obtained: 
 
+http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones 
 
+### Raw data files
+The data files are available as a zip archive that the run_analysis.R script will download from:
 
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+The archive will then be unzipped into a subdirectory named **/data**.  The subdirectory will be created if 
+it does note exist.  The unzipped files will be placed into a subdirectory named **/data/UCI HAR Dataset**.
+The complet listing of unzipped files is:
+---
+ [1] "activity_labels.txt"                          "features.txt"                                
+ [3] "features_info.txt"                            "README.txt"                                  
+ [5] "test/Inertial Signals/body_acc_x_test.txt"    "test/Inertial Signals/body_acc_y_test.txt"   
+ [7] "test/Inertial Signals/body_acc_z_test.txt"    "test/Inertial Signals/body_gyro_x_test.txt"  
+ [9] "test/Inertial Signals/body_gyro_y_test.txt"   "test/Inertial Signals/body_gyro_z_test.txt"  
+[11] "test/Inertial Signals/total_acc_x_test.txt"   "test/Inertial Signals/total_acc_y_test.txt"  
+[13] "test/Inertial Signals/total_acc_z_test.txt"   "test/subject_test.txt"                       
+[15] "test/X_test.txt"                              "test/y_test.txt"                             
+[17] "train/Inertial Signals/body_acc_x_train.txt"  "train/Inertial Signals/body_acc_y_train.txt" 
+[19] "train/Inertial Signals/body_acc_z_train.txt"  "train/Inertial Signals/body_gyro_x_train.txt"
+[21] "train/Inertial Signals/body_gyro_y_train.txt" "train/Inertial Signals/body_gyro_z_train.txt"
+[23] "train/Inertial Signals/total_acc_x_train.txt" "train/Inertial Signals/total_acc_y_train.txt"
+[25] "train/Inertial Signals/total_acc_z_train.txt" "train/subject_train.txt"                     
+[27] "train/X_train.txt"                            "train/y_train.txt"    
+---
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 

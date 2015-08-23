@@ -1,20 +1,27 @@
-1 # History files 
-2 .Rhistory 
-3 .Rapp.history 
-4 
+# History files 
+.Rhistory 
+.Rapp.history 
+
  
-5 # Example code in package build process 
-6 *-Ex.R 
-7 
+# Example code in package build process 
+*-Ex.R 
+
  
-8 # RStudio files 
-9 .Rproj.user/ 
-10 
+# RStudio files 
+.Rproj.user/ 
  
-11 # produced vignettes 
-12 *.html 
-13 *.pdf 
-14 
+# Data files
+data/*.*
+data/UCI HAR Dataset/*.*
+data/UCI HAR Dataset/test/*.*
+data/UCI HAR Dataset/train/*.*
+data/UCI HAR Dataset/test/Inertial Signals/*.*
+data/UCI HAR Dataset/train/Inertial Signals/*.*
+
+# produced output files 
+*.html 
+*.pdf 
+
  
-15 # OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3 
-16 .httr-oauth 
+# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3 
+.httr-oauth 
