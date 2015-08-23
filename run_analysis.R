@@ -157,5 +157,5 @@ tidydata <- aggregate(. ~Subject + Activity, UCI_HAR_data, mean)
   # Order the data by subject and activity
 tidydata <- tidydata[order(tidydata$Subject, tidydata$ActivityCode), ] 
   # create the tidy data file
-write.table(tidydata, file = "./tidydata.txt", row.names=FALSE, quote = FALSE) 
+write.table(tidydata, file = "./tidydata.txt", row.names=FALSE, quote = FALSE)  
 

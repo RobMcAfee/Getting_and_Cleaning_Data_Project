@@ -29,5 +29,5 @@ To run the script:
 2. Edit line 14 to contain the path for the directory you want to use for downloading the data and creating the tidy dataset.  Or comment the line to use the current working directory.
 3. Run the run_analysis.R script.  It will download the zip file with the source data, unzip all the files, and create the tidydata.txt file.
 
-For additional information about the tidydata.txt file including the transformations and description of columns, refer to the CodeBook.md file in this repo.
+For additional information about the tidydata.txt file including the transformations and description of columns, refer to the CodeBook.md file in this repo. 
 
